@@ -77,7 +77,7 @@ function checkWin() {
 function endGame(won) {
     gameOver = true;
     if (won) {
-        messageEl.textContent = `Hooray 🎉 Keep it Up! The word was ${currentWordObj.word}.`;
+        messageEl.textContent = `Hooray, 🎉 Keep it Up! The word was ${currentWordObj.word}.`;
         messageEl.className = "message win";
     } else {
         messageEl.textContent = `💀 Game over! The word was ${currentWordObj.word}.`;
