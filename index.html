@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Game | Yusuf Olaniyi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🔤 Word Guessing Game</h1>
+            <p class="subtitle">Guess the cybersecurity term before you run out of chances. Use the hint if you need help!</p>
+        </header>
+
+        <div class="word-display" id="wordDisplay"></div>
+
+        <div class="chances-container">
+            <span class="chances-label">Chances left:</span>
+            <span class="chances-badge" id="chancesCount">6</span>
+        </div>
+
+        <div class="keyboard" id="keyboard"></div>
+
+        <div class="hint-area">
+            <button class="btn-hint" id="hintBtn">💡 Hint</button>
+            <p class="hint-text" id="hintText"></p>
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <button class="btn-new-game" id="newGameBtn">New Game</button>
+    </div>
+
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
