@@ -24,8 +24,8 @@ body {
     background: #111;
     border: 1px solid #00ff41;
     border-radius: 16px;
-    padding: 2.5rem 2rem;
-    max-width: 520px;
+    padding: 2rem 1.8rem;
+    max-width: 600px;
     width: 100%;
     text-align: center;
     box-shadow: 0 0 25px rgba(0, 255, 65, 0.08);
@@ -42,8 +42,25 @@ body {
 .subtitle {
     color: #aaa;
     font-size: 0.95rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.2rem;
     line-height: 1.5;
+}
+
+/* ========== STREAK ========== */
+.streak-area {
+    margin-bottom: 1rem;
+    min-height: 2rem;
+}
+
+.streak-badge {
+    background: transparent;
+    border: 1px solid #ffaa00;
+    color: #ffaa00;
+    padding: 0.35rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
 }
 
 /* ========== WORD DISPLAY ========== */
@@ -166,6 +183,11 @@ body {
 
 .message.lose {
     color: #ff4444;
+}
+
+.message.streak {
+    color: #ffaa00;
+    font-weight: 700;
 }
 
 /* ========== NEW GAME BUTTON ========== */

@@ -1,41 +1,65 @@
 /**
- * Word Guessing Game (Hangman Style) – with Hints
- * Author: Yusuf Abdullah Olaniyi
- * Description: A cybersecurity-themed word guessing game with a built-in hint system.
+ * Word Guessing Game – Spaces supported, Streak Tracker
+ * Author: Yusuf A.O (Upin)
  */
 
-// ---------- WORD BANK (30 terms with hints) ----------
+// ---------- WORD BANK (50+ words) ----------
 const WORDS = [
-    { word: "FIREWALL", hint: "A network security system that monitors and controls incoming/outgoing traffic." },
-    { word: "ENCRYPTION", hint: "The process of converting data into a secret code to prevent unauthorised access." },
-    { word: "PHISHING", hint: "A fraudulent attempt to obtain sensitive information by pretending to be a trustworthy entity." },
-    { word: "MALWARE", hint: "Malicious software designed to damage, disrupt, or gain unauthorised access to a system." },
-    { word: "HASHING", hint: "Converting data into a fixed-size string of characters, typically for integrity checks." },
-    { word: "SPYWARE", hint: "Software that secretly monitors and collects user information without their knowledge." },
-    { word: "PROTOCOL", hint: "A set of rules governing the exchange of data between devices." },
-    { word: "BREACH", hint: "An incident where data is accessed without authorisation." },
-    { word: "PASSWORD", hint: "A secret string of characters used for user authentication." },
-    { word: "TROJAN", hint: "Malware disguised as legitimate software to trick users into installing it." },
-    { word: "SPOOFING", hint: "Faking the origin of communication to appear as a trusted source." },
-    { word: "ROOTKIT", hint: "A stealthy type of malware that hides its presence from the operating system." },
-    { word: "KEYLOGGER", hint: "A program that records every keystroke made on a computer." },
-    { word: "ADWARE", hint: "Software that automatically displays unwanted advertisements." },
-    { word: "RANSOMWARE", hint: "Malware that encrypts files and demands payment for their release." },
-    { word: "CYBER", hint: "Relating to computers, information technology, and virtual reality." },
-    { word: "AUTHENTICATION", hint: "The process of verifying the identity of a user or device." },
-    { word: "VULNERABILITY", hint: "A weakness in a system that can be exploited to cause harm." },
-    { word: "EXPLOIT", hint: "A piece of software or technique that takes advantage of a vulnerability." },
-    { word: "BACKDOOR", hint: "A hidden method of bypassing normal authentication to access a system." },
-    { word: "DDOS", hint: "A distributed denial-of-service attack that overwhelms a target with traffic." },
-    { word: "PENETRATION", hint: "Testing a system's security by simulating an attack (pen testing)." },
-    { word: "FORENSICS", hint: "The investigation of cyber crimes and collection of digital evidence." },
-    { word: "CLOUD", hint: "Internet-based computing that provides shared resources on demand." },
-    { word: "SESSION", hint: "A temporary interaction between a user and a system." },
-    { word: "TOKEN", hint: "A digital key used for secure authentication or authorisation." },
-    { word: "VPN", hint: "A virtual private network that encrypts internet connections for privacy." },
-    { word: "WORM", hint: "A self-replicating malware that spreads without human interaction." },
-    { word: "BOTNET", hint: "A network of infected computers controlled remotely by an attacker." },
-    { word: "PATCH", hint: "An update designed to fix security vulnerabilities in software." }
+    { word: "FIREWALL", hint: "A network security system that monitors and controls traffic." },
+    { word: "ENCRYPTION", hint: "Scrambling data so only authorized people can read it." },
+    { word: "PHISHING", hint: "Fraudulent attempt to get sensitive info by pretending to be trustworthy." },
+    { word: "MALWARE", hint: "Malicious software that harms or exploits devices." },
+    { word: "HASHING", hint: "Converting data into a fixed-size string for integrity checks." },
+    { word: "SPYWARE", hint: "Software that secretly monitors user activity." },
+    { word: "PROTOCOL", hint: "Set of rules for data exchange between devices." },
+    { word: "BREACH", hint: "Unauthorized access to data." },
+    { word: "PASSWORD", hint: "Secret string used for authentication." },
+    { word: "TROJAN", hint: "Malware disguised as legitimate software." },
+    { word: "SPOOFING", hint: "Faking communication origin to appear trusted." },
+    { word: "ROOTKIT", hint: "Stealthy malware that hides its presence." },
+    { word: "KEYLOGGER", hint: "Records every keystroke on a computer." },
+    { word: "ADWARE", hint: "Software that displays unwanted ads." },
+    { word: "RANSOMWARE", hint: "Encrypts files and demands payment." },
+    { word: "CYBER", hint: "Relating to computers and information technology." },
+    { word: "AUTHENTICATION", hint: "Verifying the identity of a user or device." },
+    { word: "VULNERABILITY", hint: "Weakness that can be exploited." },
+    { word: "EXPLOIT", hint: "Code that takes advantage of a vulnerability." },
+    { word: "BACKDOOR", hint: "Hidden method to bypass authentication." },
+    { word: "DDOS", hint: "Flooding a server with traffic to make it unavailable." },
+    { word: "PENETRATION", hint: "Simulated attack to test defenses." },
+    { word: "FORENSICS", hint: "Investigation of cyber crimes and digital evidence." },
+    { word: "CLOUD", hint: "Internet-based computing resources on demand." },
+    { word: "SESSION", hint: "Temporary interaction between user and system." },
+    { word: "TOKEN", hint: "Digital key for secure authentication." },
+    { word: "VPN", hint: "Encrypts your internet connection for privacy." },
+    { word: "WORM", hint: "Self-replicating malware that spreads automatically." },
+    { word: "BOTNET", hint: "Network of infected computers controlled remotely." },
+    { word: "PATCH", hint: "Update that fixes security vulnerabilities." },
+    { word: "ZERO DAY", hint: "Vulnerability unknown to the software vendor." },
+    { word: "SOCIAL", hint: "Manipulating people to give up confidential info." },
+    { word: "HONEYPOT", hint: "Decoy system to attract attackers." },
+    { word: "BIOMETRICS", hint: "Using fingerprints or face for authentication." },
+    { word: "WHITELIST", hint: "List of approved items allowed access." },
+    { word: "BLACKLIST", hint: "List of blocked items denied access." },
+    { word: "SANDBOX", hint: "Isolated environment to test suspicious code." },
+    { word: "COOKIE", hint: "Small data stored by websites in your browser." },
+    { word: "CERTIFICATE", hint: "Digital document verifying identity (SSL)." },
+    { word: "HASH", hint: "Fixed-size output from a hash function." },
+    { word: "SALT", hint: "Random data added to passwords before hashing." },
+    { word: "BRUTE FORCE", hint: "Trying all possible password combinations." },
+    { word: "DICTIONARY", hint: "Attack using common words to guess passwords." },
+    { word: "MAN IN THE MIDDLE", hint: "Intercepting communication between two parties." },
+    { word: "XSS", hint: "Injecting malicious scripts into web pages." },
+    { word: "SQL INJECTION", hint: "Attacking database queries with malicious input." },
+    { word: "CSRF", hint: "Tricking users into performing unwanted actions." },
+    { word: "OWASP", hint: "Organization listing top web app security risks." },
+    { word: "NMAP", hint: "Network scanning and discovery tool." },
+    { word: "WIRESHARK", hint: "Network protocol analyzer for packet inspection." },
+    { word: "METASPLOIT", hint: "Penetration testing framework for exploiting vulnerabilities." },
+    { word: "BURP SUITE", hint: "Web application security testing proxy." },
+    { word: "NESSUS", hint: "Vulnerability scanner by Tenable." },
+    { word: "OPENVAS", hint: "Open-source vulnerability scanner." },
+    { word: "HYDRA", hint: "Fast network logon cracker tool." }
 ];
 
 // ---------- GAME STATE ----------
@@ -43,6 +67,7 @@ let currentWordObj = null;
 let guessedLetters = new Set();
 let remainingChances = 6;
 let gameOver = false;
+let winStreak = 0;
 
 // ---------- DOM ELEMENTS ----------
 const wordDisplayEl = document.getElementById("wordDisplay");
@@ -52,46 +77,75 @@ const messageEl = document.getElementById("message");
 const hintBtn = document.getElementById("hintBtn");
 const hintTextEl = document.getElementById("hintText");
 const newGameBtn = document.getElementById("newGameBtn");
+const streakBadge = document.getElementById("streakBadge");
 
 // ---------- HELPER FUNCTIONS ----------
 function getRandomWordObj() {
     return WORDS[Math.floor(Math.random() * WORDS.length)];
 }
 
+function updateStreakDisplay() {
+    if (winStreak > 0) {
+        let text = `🔥 Streak: ${winStreak}`;
+        if (winStreak >= 10) {
+            text = `👑 Legendary Streak: ${winStreak}`;
+        } else if (winStreak >= 5) {
+            text = `⚡ Hot Streak: ${winStreak}`;
+        } else if (winStreak >= 3) {
+            text = `🔥 Streak: ${winStreak}`;
+        }
+        streakBadge.textContent = text;
+    } else {
+        streakBadge.textContent = "No active streak";
+    }
+}
+
 function updateUI() {
-    // Update word display (show only guessed letters, rest as underscores)
     const display = currentWordObj.word
         .split("")
-        .map(letter => guessedLetters.has(letter) ? letter : "_")
+        .map(ch => {
+            if (ch === " ") return " ";   // space shown as-is
+            return guessedLetters.has(ch) ? ch : "_";
+        })
         .join(" ");
     wordDisplayEl.textContent = display;
-
-    // Update chances
     chancesCountEl.textContent = remainingChances;
 }
 
 function checkWin() {
-    return currentWordObj.word.split("").every(letter => guessedLetters.has(letter));
+    return currentWordObj.word
+        .split("")
+        .every(ch => ch === " " || guessedLetters.has(ch));
 }
 
 function endGame(won) {
     gameOver = true;
     if (won) {
-        messageEl.textContent = `Hooray, 🎉 Keep it Up! The word was ${currentWordObj.word}.`;
+        winStreak++;
+        let streakMsg = "";
+        if (winStreak >= 10) {
+            streakMsg = ` 👑 ${winStreak} in a row! Legendary streak!`;
+        } else if (winStreak >= 5) {
+            streakMsg = ` ⚡ ${winStreak} wins in a row! Unstoppable!`;
+        } else if (winStreak >= 3) {
+            streakMsg = ` 🔥 ${winStreak} in a row! You're on fire!`;
+        } else {
+            streakMsg = ` (Streak: ${winStreak})`;
+        }
+        messageEl.textContent = `🎉 You win! The word was ${currentWordObj.word}.${streakMsg}`;
         messageEl.className = "message win";
     } else {
-        messageEl.textContent = `💀 Game over! The word was ${currentWordObj.word}.`;
+        winStreak = 0;
+        messageEl.textContent = `💀 Game over! The word was ${currentWordObj.word}. Streak reset.`;
         messageEl.className = "message lose";
     }
-    // Disable all keyboard buttons
+    updateStreakDisplay();
     document.querySelectorAll(".key").forEach(btn => btn.disabled = true);
 }
 
-// ---------- GAME LOGIC ----------
 function handleGuess(letter, button) {
     if (gameOver) return;
 
-    // Ignore repeated guesses
     if (guessedLetters.has(letter)) {
         messageEl.textContent = `You already guessed "${letter}".`;
         messageEl.className = "message";
@@ -111,12 +165,9 @@ function handleGuess(letter, button) {
         messageEl.className = "message";
     }
 
-    // Clear any previously shown hint
     hintTextEl.textContent = "";
-
     updateUI();
 
-    // Check win/loss conditions
     if (checkWin()) {
         endGame(true);
     } else if (remainingChances <= 0) {
@@ -124,7 +175,6 @@ function handleGuess(letter, button) {
     }
 }
 
-// ---------- BUILD KEYBOARD ----------
 function createKeyboard() {
     keyboardEl.innerHTML = "";
     for (let charCode = 65; charCode <= 90; charCode++) {
@@ -137,14 +187,11 @@ function createKeyboard() {
     }
 }
 
-// ---------- HINT FUNCTIONALITY ----------
 function showHint() {
     if (gameOver) return;
     hintTextEl.textContent = `💡 Hint: ${currentWordObj.hint}`;
-    // Hint does not cost a chance
 }
 
-// ---------- RESET GAME ----------
 function resetGame() {
     currentWordObj = getRandomWordObj();
     guessedLetters.clear();
@@ -157,6 +204,7 @@ function resetGame() {
 
     createKeyboard();
     updateUI();
+    updateStreakDisplay();
 }
 
 // ---------- EVENT LISTENERS ----------

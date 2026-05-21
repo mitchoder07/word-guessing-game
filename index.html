@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Guessing Game | Yusuf Olaniyi</title>
+    <title>Word Guessing Game | Upin</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,6 +12,11 @@
             <h1>Word Guessing Game</h1>
             <p class="subtitle">Guess the cybersecurity term before you run out of chances. Use the hint if you need help!</p>
         </header>
+
+        <!-- Streak display -->
+        <div class="streak-area" id="streakArea">
+            <span class="streak-badge" id="streakBadge">🔥 Streak: 0</span>
+        </div>
 
         <div class="word-display" id="wordDisplay"></div>
 
@@ -32,7 +37,7 @@
         <button class="btn-new-game" id="newGameBtn">New Game</button>
     </div>
 
-    <a href="https://upin-portfolio.vercel.app/" class="back-link">← Back to Portfolio</a>
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
 
     <script src="script.js"></script>
 </body>
