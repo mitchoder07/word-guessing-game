@@ -1,5 +1,5 @@
 /**
- * Word Guessing Game – Spaces supported, Streak Tracker
+ * Word Guessing Game – Streak Tracker
  * Author: Yusuf A.O (Upin)
  */
 
